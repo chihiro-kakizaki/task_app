@@ -1,0 +1,16 @@
+<h1>ブログ一覧</h1>
+
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>内容</th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><%= task.title %></td>
+    <td><%= task.content %></td>
+
+    <td><%= link_to '詳細', task_path(task.id) %></td>
+  </tr>
+<% end %>
