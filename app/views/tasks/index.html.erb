@@ -7,7 +7,7 @@
     <th><%= t('tasks.content') %></th>
   </tr>
 
-<% @tasks.reverse_each do |task| %>
+<% @tasks.each do |task| %>
   <tr class="task_row">
     <td><%= task.title %></td>
     <td><%= task.content %></td>
