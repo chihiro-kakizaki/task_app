@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      task: タスク
+    attributes:
+      task:
+        title: タイトル
+        content: 内容
+  tasks:
+    title: タスク名
+    content: 内容
+    show: 詳細
+    edit: 編集
+    destroy: 削除
+    new: 新規作成
+    index: 一覧
+    back: 戻る
