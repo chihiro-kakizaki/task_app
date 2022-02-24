@@ -4,7 +4,7 @@ ja:
       task: タスク
     attributes:
       task:
-        title: タイトル
+        title: タスク名
         content: 内容
   tasks:
     title: タスク名
