@@ -4,19 +4,28 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
         visit new_task_path
-        fill_in 'Title', with:'万葉課題'
-        fill_in 'Content', with: 'STEP1'
-        click_on 'Save'
+        fill_in 'タスク名', with:'万葉課題'
+        fill_in '内容', with: 'STEP1'
+        click_on "新規作成"
         expect(page).to have_content '万葉課題'
       end
     end
   end
   describe '一覧表示機能' do
+    let!(:task) { FactoryBot.create(:task) }
+    let!(:second_task) { FactoryBot.create(:task, title:"万葉課題", content:"STEP2") }
+    before do
+      visit tasks_path
+    end
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
-        task = FactoryBot.create(:task, title: 'task')
-        visit tasks_path
-        expect(page).to have_content 'task'
+        expect(page).to have_content 'test_title'
+      end
+    end
+    context 'タスクが作成日時の降順に並んでいる場合' do
+      it '新しいタスクが一番上に表示される' do
+        task_list = all('.task_row')
+        expect(task_list[0]).to have_content "万葉課題"
       end
     end
   end

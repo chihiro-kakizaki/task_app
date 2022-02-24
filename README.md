@@ -38,3 +38,10 @@
 | ------ | ------ |
 | id | integer |
 | name | string |
+
+### Herokuデプロイ手順
+
+1. $heroku login 実行後、 $heroku createで新しいアプリケーションを作成
+2. Gemfileのruby '2.6.5'をコメントアウトし$bundle install
+3. $git push heroku step2:masterでherokuデプロイ
+4. $heroku run rails db:migrateでマイグレーション実行

@@ -1,13 +1,1 @@
-<%= form_with(model: @task, local: true) do |form| %>
-  <div class="task_title">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-  <div class="task_content">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
-  <%= form.submit %>
-<% end %>
-
-<%= link_to 'タスク一覧画面に戻る', tasks_path %>
+<%= render partial: 'form', locals: { title:  t('tasks.edit'), submit:  t('tasks.edit') } %>

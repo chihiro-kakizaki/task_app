@@ -1,5 +1,5 @@
-<h1>タスク詳細</h1>
-<p>タイトル: <%= @task.title %></p>
-<p>内容: <%= @task.content %></p>
+<h1><%= t('tasks.show') %></h1>
+<p><%= t('tasks.title') %>: <%= @task.title %></p>
+<p><%= t('tasks.content') %>: <%= @task.content %></p>
 
-<%= link_to 'タスク一覧画面に戻る', tasks_path %>
+<%= link_to  t('tasks.back'), tasks_path %>
