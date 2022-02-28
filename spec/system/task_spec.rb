@@ -13,7 +13,7 @@ RSpec.describe 'タスク管理機能', type: :system do
   end
   describe '一覧表示機能' do
     let!(:task) { FactoryBot.create(:task) }
-    let!(:second_task) { FactoryBot.create(:task, title:"万葉課題", content:"STEP2") }
+    let!(:second_task) { FactoryBot.create(:second_task) }
     before do
       visit tasks_path
     end
@@ -26,6 +26,22 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '新しいタスクが一番上に表示される' do
         task_list = all('.task_row')
         expect(task_list[0]).to have_content "万葉課題"
+      end
+    end
+  end
+  describe 'ソート機能' do
+    let!(:task) { FactoryBot.create(:task) }
+    let!(:second_task) { FactoryBot.create(:second_task) }
+    let!(:third_task) { FactoryBot.create(:third_task) }
+    before do
+      visit tasks_path
+    end
+    context '終了期限でソートするボタンを押した場合' do
+      it '終了期限が遅いタスクが一番上に表示される' do
+        click_on "終了期限でソートする"
+        task_list = all('.task_row')
+        puts task_list[0]
+        expect(task_list[0]).to have_content "テスト確認"
       end
     end
   end
