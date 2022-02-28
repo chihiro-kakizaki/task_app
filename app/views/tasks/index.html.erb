@@ -1,16 +1,19 @@
 <h1><%= t('tasks.index') %></h1>
 <p><%= notice %></p>
-
+<%= link_to t('tasks.sort_expired'), tasks_path(sort_expired: "true") %>
 <table>
   <tr>
     <th><%= t('tasks.title') %></th>
     <th><%= t('tasks.content') %></th>
+    <th><%= t('tasks.expired_at') %></th>  
   </tr>
 
 <% @tasks.each do |task| %>
+  
   <tr class="task_row">
     <td><%= task.title %></td>
     <td><%= task.content %></td>
+    <td><%= l task.expired_at, format: :long %></td>
     <td><%= link_to t('tasks.show'), task_path(task.id) %></td>
     <td><%= link_to t('tasks.edit'), edit_task_path(task.id) %></td>
     <td><%= link_to t('tasks.destroy'), task_path(task.id), method: :delete %></td>

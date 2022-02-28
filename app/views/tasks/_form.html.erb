@@ -18,6 +18,10 @@
     <%= form.label :content %>
     <%= form.text_field :content %>
   </div>
+  <div>
+    <%= form.label :expired_at %>
+    <%= form.date_select :expired_at %>
+  </div>
   <%= form.submit(submit) %>
 <% end %>
 
