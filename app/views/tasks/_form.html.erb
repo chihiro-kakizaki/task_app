@@ -22,6 +22,15 @@
     <%= form.label :expired_at %>
     <%= form.date_select :expired_at %>
   </div>
+  <div>
+    <%= form.label :status %>
+    <%= form.select :status, Task.statuses.keys.to_a, {} %>
+  </div>
+  <div>
+    <%= form.label :priority %>
+    <%= form.select :priority, Task.priorities.keys.to_a, {} %>
+  </div>
+
   <%= form.submit(submit) %>
 <% end %>
 
