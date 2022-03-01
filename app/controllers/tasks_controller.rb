@@ -2,24 +2,22 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i(show edit update destroy)
 
   def index
-    @tasks = Task.all.create_desc
+    @tasks = Task.all.page(params[:page]).per(4).create_desc
     if params[:task].present?
       title = params[:task][:title]
       status = params[:task][:status]
         if (title && status).present?
-          @tasks = @tasks.search_title(title).search_status(status)
+          @tasks = @tasks.page(params[:page]).per(4).search_title(title).search_status(status)
         elsif title.present?
-          @tasks = @tasks.search_title(title)
+          @tasks = @tasks.page(params[:page]).per(4).search_title(title)
         elsif status.present?
-          @tasks = @tasks.search_status(status)
+          @tasks = @tasks.page(params[:page]).per(4).search_status(status)
         end
     elsif params[:sort_expired]
-      @tasks = Task.all.expire_desc
+      @tasks = Task.all.page(params[:page]).per(4).expire_desc
     elsif params[:sort_priority]
-      @tasks = Task.all.priority_asc
+      @tasks = Task.all.page(params[:page]).per(4).priority_asc
     end
-
-
   end
 
   def new
