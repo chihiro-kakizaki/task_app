@@ -1,21 +1,36 @@
-<h1><%= t('tasks.index') %></h1>
+<h2><%= t('tasks.index') %></h2>
 <p><%= notice %></p>
+<div>
+  <%= form_with url: tasks_path, scope: :task, method: :get, local: true do |form| %>
+    <%= form.text_field :title %>
+    <%= form.select :status, Task.statuses.keys.to_a, { include_blank: "選択する" } %>
+    <%= form.submit "検索" , class:" btn btn-primary btn-sm"%>
+  <% end %>
+</div>
+<%= link_to t('tasks.new'), new_task_path, class:"new btn btn-primary btn-sm" %>
 
-<table>
+<table class='table'>
   <tr>
     <th><%= t('tasks.title') %></th>
     <th><%= t('tasks.content') %></th>
+    <th><%= link_to t('tasks.sort_expired'), tasks_path(sort_expired: "true"), class:"expired btn btn-outline-secondary btn-sm" %></th>
+    <th><%= t('tasks.status') %></th>
+    <th><%= link_to t('tasks.sort_priority'), tasks_path(sort_priority: "true"), class:"priority btn btn-outline-secondary btn-sm" %></th>
   </tr>
 
 <% @tasks.each do |task| %>
+  
   <tr class="task_row">
     <td><%= task.title %></td>
     <td><%= task.content %></td>
-    <td><%= link_to t('tasks.show'), task_path(task.id) %></td>
-    <td><%= link_to t('tasks.edit'), edit_task_path(task.id) %></td>
-    <td><%= link_to t('tasks.destroy'), task_path(task.id), method: :delete %></td>
+    <td><%= task.expired_at.strftime('%Y/%m/%d') %></td>
+    <td><%= task.status %></td>
+    <td><%= task.priority %></td>
+    <td><%= link_to t('tasks.show'), task_path(task.id), class:"show btn btn-outline-primary btn-sm" %></td>
+    <td><%= link_to t('tasks.edit'), edit_task_path(task.id), class:"edit btn btn-outline-success btn-sm" %></td>
+    <td><%= link_to t('tasks.destroy'), task_path(task.id), method: :delete, class:"edit btn btn-outline-secondary btn-sm" %></td>
   </tr>
 <% end %>
 </table>
 
-<%= link_to t('tasks.new'), new_task_path %>
+<%= paginate @tasks %>

@@ -18,7 +18,20 @@
     <%= form.label :content %>
     <%= form.text_field :content %>
   </div>
-  <%= form.submit(submit) %>
+  <div>
+    <%= form.label :expired_at %>
+    <%= form.date_select :expired_at %>
+  </div>
+  <div>
+    <%= form.label :status %>
+    <%= form.select :status, Task.statuses.keys.to_a, {} %>
+  </div>
+  <div>
+    <%= form.label :priority %>
+    <%= form.select :priority, Task.priorities.keys.to_a, {} %>
+  </div>
+
+  <%= form.submit nil, class:"new btn btn-primary btn-sm" %>
 <% end %>
 
-<%= link_to  t('tasks.back'), tasks_path %>
+<%= link_to  t('tasks.back'), tasks_path, class:"back btn btn-outline-primary btn-sm" %>

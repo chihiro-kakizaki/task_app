@@ -39,8 +39,8 @@ ja:
     - 金曜日
     - 土曜日
     formats:
-      default: "%Y/%m/%d"
-      long: "%Y年%m月%d日(%a)"
+      default: "%Y/%m/%d %H:%M:%S"
+      long: "%Y年%m月%d日"
       short: "%m/%d"
     month_names:
     - 
@@ -142,7 +142,7 @@ ja:
     select:
       prompt: 選択してください
     submit:
-      create: 登録する
+      create: 新規作成
       submit: 保存する
       update: 更新する
   number:
