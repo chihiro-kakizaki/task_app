@@ -14,6 +14,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'pry-rails'
 gem 'kaminari'
+gem 'bcrypt'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
