@@ -10,4 +10,6 @@ class Task < ApplicationRecord
   scope :search_status, -> (params_status){ where(status: params_status) }
   scope :expire_desc, -> { order(expired_at: :desc) }
   scope :priority_asc, -> { order(priority: :asc) }
+
+  belongs_to :user
 end
