@@ -7,6 +7,25 @@
   text-align: center;
 }
 
+.top_menu {
+  height: 60px;
+  background-color: rgb(102, 151, 151);
+  list-style: none;
+  overflow: hidden;
+}
+
+.top_menu li {
+  float: left;
+  padding: 10px;
+}
+
+.top_menu li a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+
 /* ページネーション */
 .pagination {
   justify-content: center;
