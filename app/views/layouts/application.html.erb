@@ -22,6 +22,9 @@
       <% if logged_in? %>
         <%= link_to "Profile", user_path(current_user.id) %>
         <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+        <% if current_user.admin? %>
+          <%= link_to '管理者ページ', admin_users_path  %>
+        <% end %>
       <% else %>
         <%= link_to "Sign up", new_user_path %>
         <%= link_to "Login", new_session_path %>
