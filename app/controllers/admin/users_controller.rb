@@ -13,7 +13,8 @@ class Admin::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to admin_users_path, notice: "ユーザーを作成しました"
+      redirect_to admin_users_path
+      flash[:notice] = "ユーザーを作成しました"
     else
       render :new
     end
@@ -36,9 +37,12 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    redirect_to admin_users_path
-    flash[:notice] = "ユーザーを削除しました"
+    if @user.destroy
+      redirect_to admin_users_path
+      flash[:notice] = "ユーザーを削除しました"
+    else
+      redirect_to admin_users_path
+    end
   end
 
   private
@@ -55,7 +59,8 @@ class Admin::UsersController < ApplicationController
       :name,
       :email,
       :password,
-      :password_confirmation
+      :password_confirmation,
+      :admin
     )
   end
 
