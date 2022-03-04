@@ -10,6 +10,7 @@
 
 <table class='table'>
   <tr>
+    <th><%= t('users.name') %></th>  
     <th><%= t('tasks.title') %></th>
     <th><%= t('tasks.content') %></th>
     <th><%= link_to t('tasks.sort_expired'), tasks_path(sort_expired: "true"), class:"expired btn btn-outline-secondary btn-sm" %></th>
@@ -20,6 +21,7 @@
 <% @tasks.each do |task| %>
   
   <tr class="task_row">
+    <td><%= task.user.name %></td>
     <td><%= task.title %></td>
     <td><%= task.content %></td>
     <td><%= task.expired_at.strftime('%Y/%m/%d') %></td>

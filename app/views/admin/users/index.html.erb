@@ -4,7 +4,7 @@
 <table class='table'>
   <thead>
     <tr>
-      <th><%= t('users.id') %></th>
+      <th><%= t('users.admin') %></th>
       <th><%= t('users.name') %></th>
       <th><%= t('users.email') %></th>
     </tr>
@@ -12,7 +12,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.id %></td>
+        <td><%= user.admin %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.task_ids.count %></td>
