@@ -21,13 +21,13 @@ User.create!(
   )
 end
 
-10.times do |n|
+10.times do |i|
   Task.create!(
     title: "テストタスク#{i + 1}",
     content: "タスク内容#{i + 1}",
-    status: "未着手"
-    priority: "中"
-    user_id: 10
+    status: 2,
+    priority: 2,
+    user_id: 2
   )
 end
 
