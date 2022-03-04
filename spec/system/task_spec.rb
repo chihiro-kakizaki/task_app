@@ -22,6 +22,16 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_on "新規作成"
         expect(page).to have_content '未着手'
       end
+      it 'タスクにラベルが付く' do
+        visit new_task_path
+        fill_in 'タスク名', with:'万葉課題'
+        fill_in '内容', with: 'STEP1'
+        select Time.current.year + 5, from: 'task[expired_at(1i)]'
+        select '未着手', from: 'task[status]'
+        check "テストラベル1"
+        click_on "新規作成"
+        expect(page).to have_content 'テストラベル1'
+      end
     end
   end
   describe '一覧表示機能' do
@@ -85,15 +95,26 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content 'STEP3'
       end
     end
+    context 'ラベルで検索をした場合' do
+      it "ラベルに完全一致するタスクが絞り込まれる" do
+        select 'テストラベル2', from: 'task_label_id'
+        click_on '検索'
+        expect(page).to have_content 'テストラベル2'
+      end
+    end
   end  
-
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示される' do
         visit tasks_path
         all("tbody tr")[1].click_on "詳細"
         expect(page).to have_content 'テスト確認'
-       end 
+       end
+       it '該当タスクのラベルが表示される' do
+        visit tasks_path
+        all("tbody tr")[1].click_on "詳細"
+        expect(page).to have_content 'テストラベル3'
+       end
      end
   end
 end
