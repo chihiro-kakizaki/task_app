@@ -1,21 +1,18 @@
-<h2><%= t('tasks.index') %></h2>
-<div>
-  <%= form_with url: tasks_path, scope: :task, method: :get, local: true do |form| %>
-    <%= form.text_field :title %>
-    <%= form.select :status, Task.statuses.keys.to_a, { include_blank: true } %>
-    <%= form.submit "検索" , class:" btn btn-primary btn-sm"%>
-  <% end %>
-</div>
-<%= link_to t('tasks.new'), new_task_path, class:"new btn btn-primary btn-sm" %>
+<h1><%= @user.name %>のページ</h1>
+
+<p>メールアドレス: <%= @user.email %></p>
+
+
+
 
 <table class='table'>
   <tr>
     <th><%= t('users.name') %></th>  
     <th><%= t('tasks.title') %></th>
     <th><%= t('tasks.content') %></th>
-    <th><%= link_to t('tasks.sort_expired'), tasks_path(sort_expired: "true"), class:"expired btn btn-outline-secondary btn-sm" %></th>
+    <th><%= t('tasks.expired_at') %></th>
     <th><%= t('tasks.status') %></th>
-    <th><%= link_to t('tasks.sort_priority'), tasks_path(sort_priority: "true"), class:"priority btn btn-outline-secondary btn-sm" %></th>
+    <th><%= t('tasks.priority') %></th>
   </tr>
 
 <% @tasks.each do |task| %>
@@ -34,4 +31,4 @@
 <% end %>
 </table>
 
-<%= paginate @tasks %>
+<%= link_to  t('tasks.index'), tasks_path, class:"back btn btn-primary btn-sm" %>

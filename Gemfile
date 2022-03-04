@@ -14,6 +14,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'pry-rails'
 gem 'kaminari'
+gem 'bcrypt'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -35,6 +36,7 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'webdrivers'
+  gem 'rspec-retry'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data'

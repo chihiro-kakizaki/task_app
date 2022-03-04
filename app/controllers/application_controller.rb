@@ -1,7 +1,13 @@
 class ApplicationController < ActionController::Base
+  include SessionsHelper
+  before_action :login_required
   before_action :basic_auth, if: :production?
 
   private
+  
+  def login_required
+    redirect_to new_session_path unless current_user
+  end
 
   def production?  
     Rails.env.production?
