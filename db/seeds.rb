@@ -11,3 +11,26 @@ User.create!(
   password:  '1111',
   admin: true
   )
+
+9.times do |i|
+  User.create!(
+    name: "テストユーザー#{i + 1}",
+    email: "test#{i + 1}@test.com",
+    password: "testhoge",
+    admin: false
+  )
+end
+
+10.times do |n|
+  Task.create!(
+    title: "テストタスク#{i + 1}",
+    content: "タスク内容#{i + 1}",
+    status: "未着手"
+    priority: "中"
+    user_id: 10
+  )
+end
+
+10.times do |i|
+  Label.create!(name: "ラベル#{i + 1}")
+end
