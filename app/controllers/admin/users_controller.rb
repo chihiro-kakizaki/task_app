@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :not_admin
   before_action :set_user, only: %i[show edit update destroy]
   def index
-    @users = User.all
+    @users = User.all.includes(:tasks)
   end
 
   def new
@@ -11,7 +11,6 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.save
       redirect_to admin_users_path
       flash[:notice] = "ユーザーを作成しました"
@@ -49,7 +48,7 @@ class Admin::UsersController < ApplicationController
 
   def not_admin
     unless current_user.admin?
-      redirect_to root_path
+      redirect_to tasks_path
       flash[:notice] = "管理者以外アクセスできません"
     end
   end
