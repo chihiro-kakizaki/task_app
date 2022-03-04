@@ -2,20 +2,24 @@
 <%= link_to t('users.new'), new_admin_user_path, class:"new btn btn-primary btn-sm" %>
 
 <table class='table'>
-  <tr>
-    <th><%= t('users.id') %></th>
-    <th><%= t('users.name') %></th>
-    <th><%= t('users.email') %></th>
-  </tr>
-
-<% @users.each do |user| %>
-  
-    <td><%= user.id %></td>
-    <td><%= user.name %></td>
-    <td><%= user.email %></td>
-    <td><%= link_to t('users.show'), admin_user_path(user.id), class:"show btn btn-outline-primary btn-sm" %></td>
-    <td><%= link_to t('users.edit'), edit_admin_user_path(user.id), class:"edit btn btn-outline-success btn-sm" %></td>
-    <td><%= link_to t('users.destroy'), admin_user_path(user.id), method: :delete, class:"edit btn btn-outline-secondary btn-sm" %></td>
-  </tr>
-<% end %>
+  <thead>
+    <tr>
+      <th><%= t('users.id') %></th>
+      <th><%= t('users.name') %></th>
+      <th><%= t('users.email') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.task_ids.count %></td>
+        <td><%= link_to t('users.show'), admin_user_path(user.id),  class:"show btn btn-outline-primary btn-sm" %></td>
+        <td><%= link_to t('users.edit'), edit_admin_user_path(user.id), class:"edit btn btn-outline-success btn-sm" %></td>
+        <td><%= link_to t('users.destroy'), admin_user_path(user.id), method: :delete, class:"edit btn btn-outline-secondary btn-sm" %></td>
+      </tr>
+    <% end %>
+  <tbody>
 </table>
