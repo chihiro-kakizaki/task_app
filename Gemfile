@@ -36,6 +36,7 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'webdrivers'
+  gem 'rspec-retry'
 end
 
 gem 'tzinfo-data'
