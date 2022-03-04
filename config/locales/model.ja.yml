@@ -3,6 +3,7 @@ ja:
     models:
       task: タスク
       user: ユーザー
+      label: ラベル名
     attributes:
       task:
         title: タスク名
@@ -10,6 +11,7 @@ ja:
         expired_at: 終了期限
         status: ステータス
         priority: 優先順位
+        label: ラベル名
       user:
         name: ユーザー名
         email: メールアドレス
@@ -30,6 +32,7 @@ ja:
     back: 戻る
     sort_expired: 終了期限でソートする
     sort_priority: 優先順位でソートする
+    label: ラベル名
   users:
     name: ユーザー名
     email: メールアドレス
