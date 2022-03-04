@@ -1,5 +1,8 @@
 <h1><%= t('tasks.show') %></h1>
 <p><%= t('tasks.title') %>: <%= @task.title %></p>
 <p><%= t('tasks.content') %>: <%= @task.content %></p>
-
-<%= link_to  t('tasks.back'), tasks_path %>
+<p><%= t('tasks.label') %>:
+  <% @task.labels.each do |label| %>
+    <%= label.name %>
+  <% end %>
+</p>
