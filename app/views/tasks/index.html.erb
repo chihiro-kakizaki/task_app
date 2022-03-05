@@ -3,6 +3,7 @@
   <%= form_with url: tasks_path, scope: :task, method: :get, local: true do |form| %>
     <%= form.text_field :title %>
     <%= form.select :status, Task.statuses.keys.to_a, { include_blank: true } %>
+    <%= form.select :label_id, Label.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
     <%= form.submit "検索" , class:" btn btn-primary btn-sm"%>
   <% end %>
 </div>
@@ -16,6 +17,7 @@
     <th><%= link_to t('tasks.sort_expired'), tasks_path(sort_expired: "true"), class:"expired btn btn-outline-secondary btn-sm" %></th>
     <th><%= t('tasks.status') %></th>
     <th><%= link_to t('tasks.sort_priority'), tasks_path(sort_priority: "true"), class:"priority btn btn-outline-secondary btn-sm" %></th>
+    <th><%= t('tasks.label') %></th>
   </tr>
 
 <% @tasks.each do |task| %>
@@ -27,6 +29,11 @@
     <td><%= task.expired_at.strftime('%Y/%m/%d') %></td>
     <td><%= task.status %></td>
     <td><%= task.priority %></td>
+    <td>
+      <% task.labels.each do |label| %>
+        <%= label.name %>
+      <% end %>
+    </td>
     <td><%= link_to t('tasks.show'), task_path(task.id), class:"show btn btn-outline-primary btn-sm" %></td>
     <td><%= link_to t('tasks.edit'), edit_task_path(task.id), class:"edit btn btn-outline-success btn-sm" %></td>
     <td><%= link_to t('tasks.destroy'), task_path(task.id), method: :delete, class:"edit btn btn-outline-secondary btn-sm" %></td>

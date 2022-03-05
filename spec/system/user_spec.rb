@@ -93,7 +93,6 @@ RSpec.describe 'ユーザー管理機能', type: :system do
         visit admin_users_path
         expect(page).to have_content "管理者以外アクセスできません"
       end
-
     end
   end  
 end
